@@ -1,0 +1,59 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div id="content" class="col-12" style="padding-top: 7rem;">
+        <div class="row">
+            <div class="col-md-4 col-1 col-sm-2"></div>
+            <h3 class="h4 col-md-4 col-10 col-sm-6"
+                style="text-align: center; padding-block-end: 10px; border-block-end: solid 2px red;">
+                Informes Académicos de los Estudiantes</h3>
+            <div class="col-md-4 col-1 col-sm-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="table-responsive mt-2 col-md-8">
+                <table class="table mt-3 border border-dark">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" >Estudiante</th>
+                            <th scope="col">Convenio</th>
+                            <th scope="col"></th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center border" *ngFor="let vinculo of vinculados | paginate: { itemsPerPage: 5, currentPage: page }; let id = index;">
+                            <th scope="row">{{id+1}}</th>
+                            <td data-title="'Estudiante'" sortable="'nombre'" >{{ vinculo.nombre }} {{ vinculo.apellido }}</td>
+                            <div *ngFor="let convenio of convenios">
+                                <td *ngIf="vinculo.idInstitucion == convenio._id">
+                                    {{convenio.nombre}}
+                                </td>
+                            </div>
+                            <td>
+                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#informes"
+                                    (click)="selectInformes(vinculo._id)" (click)="selectEstudiante(vinculo._id)" >
+                                    <i class="far fa-file-alt"></i>
+                                </button>
+                            </td>
+                            <div *ngFor="let horas of total">
+                                <td *ngIf="vinculo._id == horas._id">
+                                    {{horas.total}} / 160 
+                                    <button *ngIf="horas.total >= 160" class="btn btn-outline-warning">
+                                        <i class="fa fa-check"></i> Completado
+                                    </button>
+                                </td>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-10 text-center mt-2">
+                    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+<app-informes [estudiante]="estudiante" [informeEstudiante]="informeEstudiante" [idEstudiante]="idEstudiante" ></app-informes>

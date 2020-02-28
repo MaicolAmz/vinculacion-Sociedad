@@ -1,0 +1,75 @@
+<!-- Modal -->
+<div class="modal fade" id="vinculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 *ngIf="institucion" class="modal-title col-md-12 text-center" id="exampleModalLongTitle">
+                    Vincular Estudiantes a "{{institucion.nombre}}"
+                </h5>
+                <div class="row mt-4">
+                    <div class="table-responsive col-md-6">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">No Vinculados</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let noVinculo of noVinculados | paginate: { itemsPerPage: 5, currentPage: numero}; let i = index;'>
+                                    <th *ngIf="noVinculo.nombre != 'Admin' " scope="row">{{ i }}</th>
+                                    <td *ngIf="noVinculo.nombre != 'Admin' ">
+                                        {{ noVinculo.nombre }} {{ noVinculo.apellido }}
+                                    </td>
+                                    <td *ngIf="noVinculo.nombre != 'Admin' ">
+                                        <button class="btn btn-outline-info right"
+                                        (click)="vincularEstudiante(noVinculo._id)">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-11 text-center mt-3">
+                            <pagination-controls (pageChange)="numero = $event"></pagination-controls>
+                        </div>
+                    </div>
+                    <div class="table-responsive col-md-6">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Vinculados</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor='let vinculo of vinculados; let i = index;'>
+                                    <th *ngIf="vinculo.nombre != 'Admin' " scope="row">{{ i+1 }}</th>
+                                    <td *ngIf="vinculo.nombre != 'Admin' " >
+                                        {{ vinculo.nombre }} {{ vinculo.apellido }}
+                                    </td>
+                                    <td *ngIf="vinculo.nombre != 'Admin' ">
+                                        <button class="btn btn-outline-danger right"
+                                        (click)="devincular(vinculo._id)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>

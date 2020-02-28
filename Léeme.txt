@@ -1,0 +1,20 @@
+BDD ---> MongoDB
+Backup BDD  --> /vinculacion-db
+arrancar MongoDB --> mongod
+******************
+Framework (FrontEnd) --> Angular 9
+Arrancar Angular ---> ng serve
+******************
+Server --> NodeJS
+Arrancar server --> npm run dev
+******************
+Login Administrador ---> admin@yavirac.edu.ec
+Password ----> 12345
+******************
+Login Estudiantes 
+USer1 --> m@yavirac.edu.ec
+Passsword1 --> 12345
+User2 --> j@yavirac.edu.ec
+Password2 --> 12345
+User3 --> x@yavirac.edu.ec
+Password3 --> 12345

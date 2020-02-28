@@ -1,0 +1,130 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div id="content" class="col-12" style="padding-top: 7rem;">
+        <div class="row">
+            <div class="col-md-4 col-1 col-sm-2"></div>
+            <h3 class="h4 col-md-4 col-10 col-sm-6"
+                style="text-align: center; padding-block-end: 10px; border-block-end: solid 2px red;">
+                Informes Académicos</h3>
+            <div class="col-md-4 col-1 col-sm-2"></div>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Importante:</strong> Los informes se encuentran ordenados por los que primero subistes
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="row mb-2">
+                    <div class="col-md-4 col-1 col-sm-2"></div>
+                    <h3 class="h5 col-md-4 col-10 col-sm-6 text-dark" style="text-align: center;">Progreso de la Fase de
+                        Vinculación con la Sociedad</h3>
+                    <div class="col-md-4 col-1 col-sm-2"></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <canvas class="col-md-8 col-sm-12 col-12" id="myChart"></canvas>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-4 col-1 col-sm-2"></div>
+            <h3 class="h5 col-md-4 col-10 col-sm-6 text-dark" style="text-align: center;">Informes por Aprobar</h3>
+            <div class="col-md-4 col-1 col-sm-2"></div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Proyecto</th>
+                        <th scope="col">Convenio</th>
+                        <th scope="col">Horas</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Archivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center border border-dark" *ngFor='let informeR of informesNoAprobados;let id = index;'>
+                        <th scope="row">{{ id+1 }}</th>
+                        <td>{{ informeR.nombreProyecto }}</td>
+                        <div *ngFor="let convenio of convenios">
+                            <td class="border-0" *ngIf="convenio._id == informeR.idConvenio">
+                                {{ convenio.nombre }}
+                            </td>
+                        </div>
+                        <td>{{ informeR.horas }}</td>
+                        <td>{{ informeR.fecha }}</td>
+                        <td>
+                            <div class="row col-md-12">
+                                <a [href]="'http://localhost:4000/' + informeR.archivoPath" target="_blank"
+                                    class="col-lg-4 col-md-12 col-12 col-sm-12 mb-2">Archivo</a>
+                                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+                                    <button class="btn btn-outline-danger mb-2" (click)="deleteInforme(informeR._id)"
+                                        style="margin-left: 5px; margin-top: -5px;">
+                                        <i class="far fa-trash-alt"></i></button>
+                                    <button class="btn btn-outline-warning mb-2" (click)="selectInforme(informeR._id)"
+                                        style="margin-left: 5px; margin-top: -5px">
+                                        <i class="far fa-edit fa fa-1x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row bg-danger mb-5 mt-5" style="height: 3px;"></div>
+        <div class="row mb-2">
+            <div class="col-md-4 col-1 col-sm-2"></div>
+            <h3 class="h5 col-md-4 col-10 col-sm-6 text-dark" style="text-align: center;">Informes Aprobados</h3>
+            <div class="col-md-4 col-1 col-sm-2"></div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Proyecto</th>
+                        <th scope="col">Convenio</th>
+                        <th scope="col">Horas</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Archivo / Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center border border-dark" *ngFor="let informeA of informesAprobados | paginate: { itemsPerPage: 5, currentPage: pagina }; let id = index;">
+                        <th scope="row">{{id+1}}</th>
+                        <td>{{ informeA.nombreProyecto}}</td>
+                        <div *ngFor="let convenio of convenios">
+                            <td class="border-0" *ngIf="convenio._id == informeA.idConvenio">
+                                {{ convenio.nombre }}
+                            </td>
+                        </div>
+                        <td>{{ informeA.horas }}</td>
+                        <td>{{ informeA.fecha }}</td>
+                        <td>
+                            <div class="row col-md-12">
+                                <a [href]="'http://localhost:4000/' + informeA.archivoPath" target="_blank"
+                                    class="col-lg-4 col-md-12 col-12 col-sm-12 mb-2">Archivo</a>
+                                <div class="col-lg-8 col-md-12 col-12 col-sm-12">
+                                    <span class="btn btn-outline-success" title="Aprobado"
+                                        style="margin-left: 5px; margin-top: -5px;">
+                                        <i class="fa fa-check"></i> Aprobado
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-11 mt-3 text-center">
+            <pagination-controls (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

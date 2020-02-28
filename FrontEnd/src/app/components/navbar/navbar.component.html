@@ -1,0 +1,115 @@
+<nav class="navbar navbar-dark bg-dark col-md-12 fixed-top">
+    <div class="row col-md-12">
+        <a class="navbar-brand col-md-2 col-sm-2 col-2" routerLink="/auth/home" style="font-size: x-large; color: white;">VINCULACIÓN</a>
+        <div class="col-md-8 col-sm-7 col-7"></div>
+        <div class="form-inline col-md-1 col-sm-2 col-2">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cardVinculacion"
+                aria-controls="cardVinculacion" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <li class="nav-item dropdown" style="list-style: none;">
+                <a class="btn btn-outline-light nav-link dropdown-toggle text-left" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.nombre }} {{user.apellido}}
+                    <i class="far fa-user-circle text-right"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
+                </div>
+            </li>
+        </div>
+    </div>
+    <div class="collapse col-md-12 bg-dark" id="cardVinculacion">
+        <div class="row">
+            <div class="col-md-4 col-2"></div>
+            <li class="nav-item dropdown col-md-4 col-8" style="list-style: none;">
+                <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="navMenos" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.nombre }} {{user.apellido}} <i class="far fa-user-circle"></i>
+                </a>
+                <div class="dropdown-menu col-md-12" aria-labelledby="navMenos" style="text-align: center;">
+                    <a class="dropdown-item" (click)="onLogout()">Cerrar Sesión</a>
+                </div>
+            </li>
+            <div class="col-md-4 col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-2"></div>
+            <li class="nav-item dropdown col-md-4 col-8" style="list-style: none;">
+                <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="navMenos" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    *ngIf="user.cedula != '0' && user.nombre != 'Admin'">
+                    Estudiantes
+                </a>
+                <a class="btn btn-outline-light nav-link dropdown-toggle" href="#" id="navMenos" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    *ngIf="user.cedula == '0' && user.nombre == 'Admin'">
+                    Empresas
+                </a>
+                <div class="dropdown-menu col-md-12" aria-labelledby="navMenos" style="text-align: center;">
+                    <a *ngIf="user.cedula != '0' && user.nombre != 'Admin'" class="dropdown-item" 
+                    routerLink="/auth/ingresarInformeE">Informes</a>
+                    <a *ngIf="user.cedula != '0' && user.nombre != 'Admin'" class="dropdown-item" 
+                    routerLink="/auth/informesAcademicos">Progreso</a>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin'" class="dropdown-item" 
+                    routerLink="/auth/convenios">Convenio</a>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin'" class="dropdown-item" 
+                    routerLink="/auth/detalle">Detalle</a>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin'" class="dropdown-item" 
+                    routerLink="/auth/informe">Informe</a>
+                </div>
+            </li> 
+            <div class="col-md-4 col-2"></div>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar  Vertical-->
+<nav id="sidebar" class="bg-dark">
+    <ul class="list-unstyled components">
+        <li class="">
+            <a *ngIf="user.cedula != '0' && user.nombre != 'Admin'" href="#homeSubmenu" 
+            data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-light">
+                Estudiantes
+            </a>
+            <a *ngIf="user.cedula == '0' && user.nombre == 'Admin' " href="#homeSubmenu" 
+            data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-light">
+                Empresas
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a *ngIf="user.cedula != '0' && user.nombre != 'Admin' " class="text-light" 
+                    routerLink="/auth/ingresarInformeE">
+                        Informes
+                    </a>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin' " class="text-light" 
+                    routerLink="/auth/convenios">
+                        Convenio
+                    </a>
+                </li>
+                <li>
+                    <a *ngIf="user.cedula != '0' && user.nombre != 'Admin' " class="text-light" 
+                    routerLink="/auth/informesAcademicos">
+                        Progreso
+                    </a>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin' " class="text-light" 
+                    routerLink="/auth/detalle">
+                        Detalle
+                    </a>
+                </li>
+                <li>
+                    <a *ngIf="user.cedula == '0' && user.nombre == 'Admin' " class="text-light" 
+                    routerLink="/auth/informe">
+                        Informes
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center position-absolute text-light pl-4" id="footer">
+        © 2020, Maicol Murillo & Fernado Rivera
+    </div>
+    <!-- Copyright -->
+</nav>
+

@@ -1,0 +1,24 @@
+<table class="table mt-3">
+    <thead class="thead-dark text-center">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Estudiante</th>
+            <th scope="col">Convenio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center border"
+            *ngFor="let noVinculo of noVinculados | paginate: { itemsPerPage: 5, currentPage: pageActual}; let id = index;">
+            <th *ngIf="noVinculo.nombre != 'Admin'" scope="row">{{id}}</th>
+            <td *ngIf="noVinculo.nombre != 'Admin'">
+                {{ noVinculo.nombre}} {{ noVinculo.apellido }}
+            </td>
+            <td *ngIf="noVinculo.nombre != 'Admin'">
+                Sin Empresa
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="col-md-10 text-center">
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+</div>

@@ -1,0 +1,82 @@
+<block-ui>
+    <div class="wrapper">
+        <app-navbar></app-navbar>
+        <div id="content" style="padding-top: 7rem;">
+            <div class="row" style="text-align: center; margin-block-end: 1rem;">
+                <div class="col-md-4"></div>
+                <h4 class="h4 col-md-4" style="padding-block-end: 10px; border-block-end: solid 2px red;">Datos Empresariales</h4>
+            </div>
+            <form class="needs-validation" novalidate [formGroup]="convenios"
+                (ngSubmit)="enviar(representante.value, empresa.value, direccion.value, celular.value )">
+                <div class="form-row">
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-6 col-md-10 col-12 col-sm-10 mb-3">
+                        <label for="nombres">Representante:</label>
+                        <input type="text" class="form-control" placeholder="Nombre Apellido" minlength="5" formControlName="representante"
+                            required #representante>
+                        <div class="valid-tooltip">
+                            Genial!
+                        </div>
+                        <div class="invalid-tooltip">
+                            Ingrese el Representante
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-6 col-md-10 col-12 col-sm-10 mb-3">
+                        <label for="nombres">Empresa:</label>
+                        <input type="text" class="form-control" placeholder="Nombre de la Empresa" minlength="3" formControlName="empresa"
+                            required #empresa>
+                        <div class="valid-tooltip">
+                            Genial!
+                        </div>
+                        <div class="invalid-tooltip">
+                            Ingrese el nombre de la empresa
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-6 col-md-10 col-12 col-sm-10 mb-3">
+                        <label for="nombres"> Dirección:</label>
+                        <input type="text" class="form-control" placeholder="ejemplo: calle20 y profeta miqueas " minlength="3" formControlName="direccion"
+                            required #direccion>
+                        <div class="valid-tooltip">
+                            Genial!
+                        </div>
+                        <div class="invalid-tooltip">
+                            Ingrese la Dirección
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-6 col-md-10 col-12 col-sm-10 mb-3">
+                        <label for="celular">Celular:</label>
+                        <input type="number" class="form-control" placeholder="0987654321" formControlName="celular"
+                            required #celular>
+                        <div class="valid-tooltip">
+                            Genial!
+                        </div>
+                        <div class="invalid-tooltip">
+                            Ingrese el celular
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-1 col-sm-1"></div>
+                </div>
+                <div class="row" style="margin-top: 2rem;">
+                    <div class="col-lg-5 col-sm-5 col-4"></div>
+                    <button class="btn btn-outline-primary col-lg-2 col-sm-2 col-4" [disabled]="!convenios.valid"
+                        type="submit">Enviar</button>
+                    <div class="col-lg-5 col-sm-5 col-4"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</block-ui>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Vinculacion</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--Boostrap-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+  <script src="./assets/lib/js/jquery-3.4.1.slim.min.js"></script>
+  <script src="./assets/lib/js/popper.min.js"></script>
+  
+  <link rel="stylesheet" href="assets/lib/css/all.min.css">
+  
+
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+<script>
+  function cambiar() {
+    var pdrs = document.getElementById('customFile').files[0].name;
+    document.getElementById('seleccionar').innerHTML = pdrs;
+  }
+  (function() {
+  'use strict';
+  window.addEventListener('change', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('change', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+</html>

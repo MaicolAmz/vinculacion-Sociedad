@@ -1,0 +1,52 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div id="content" class="col-12" style="padding-top: 7rem;">
+        <div class="row">
+            <div class="col-md-4 col-1 col-sm-2"></div>
+            <h3 class="h4 col-md-4 col-10 col-sm-6"
+                style="text-align: center; padding-block-end: 10px; border-block-end: solid 2px red;">
+                Detalles de las Instituciones</h3>
+            <div class="col-md-4 col-1 col-sm-2"></div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre Empresa</th>
+                        <th scope="col">Representante</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center border border-dark"
+                        *ngFor='let empresa of empresas | paginate: { itemsPerPage: 5, currentPage: num}; let id = index;'>
+                        <th scope="row">{{ id+1 }}</th>
+                        <td>{{ empresa.nombre }}</td>
+                        <td>{{ empresa.representante }}</td>
+                        <td>{{ empresa.direccion }}</td>
+                        <td>{{ empresa.celular }}</td>
+                        <td>
+                            <button class="btn btn-outline-info" data-toggle="modal" data-target="#vinculo"
+                            (click)="selectVinculados(empresa._id)" (click)="selectEmpresa(empresa._id)">
+                                <i class="fa fa-users"></i>
+                            </button>
+                            <button class="btn btn-outline-danger ml-1" (click)="deleteEmpresa(empresa._id)">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                            <button class="btn btn-outline-warning ml-1" (click)="editEmpresa(empresa._id)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-11 text-center mt-3">
+            <pagination-controls (pageChange)="num = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+<app-vinculo [vinculados]="estudiantes" [idInstitucion]="idEmpresa" [institucion]="empresa"></app-vinculo>

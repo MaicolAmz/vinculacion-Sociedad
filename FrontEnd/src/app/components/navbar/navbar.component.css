@@ -1,0 +1,119 @@
+.navbar-toggler{
+    display: none;
+}
+.row .nav-item{
+    margin: 10px;
+} 
+.dropdown-menu > a:hover{
+    background: rgb(197, 197, 197);   
+}
+.row .dropdown-menu > a:hover{
+    background: rgb(197, 197, 197);   
+}
+
+@media (max-width: 768px) {
+    #cardVinculacionDiv{
+        display: none;
+    }
+    .navbar-toggler{
+        display: block;
+    }
+    #navbarDropdown{
+        display: none;
+    }
+    #btnUsuarioDiv{
+        display: block;
+    }
+}
+@media (max-width: 1160px) {
+    #btnEstudiante{
+        font-size: small;
+    }
+    #estudiantes{
+        font-size: smaller;
+    }
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+
+#sidebar ul.components {
+    padding-top: 5rem ;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul.component {
+    padding-top: 0rem ;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: rgba(99, 99, 99, 0.74);
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: rgba(99, 99, 99, 0.74);
+}
+#sidebar ul li:hover>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: rgba(179, 179, 179, 0.568);
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: rgba(99, 99, 99, 0.74);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
+#footer {
+    width: 90%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: smaller;
+}
